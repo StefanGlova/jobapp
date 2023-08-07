@@ -1,5 +1,6 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render, redirect
+from django.urls import reverse
 
 job_title = [
     "First Job",
@@ -19,13 +20,17 @@ def jobs_list(request):
     job_list = "<ul>"
     for job in job_title:
         job_id = job_title.index(job)
-        job_list += f"<li><a href='job/{job_id}'>{job}</a></li>"
+        detail_url = reverse("jobs_detail", args=(job_id,))
+        job_list += f"<li><a href='{detail_url}'>{job}</a></li>"
     job_list += "</ul>"
     
     return HttpResponse(job_list)
 
 def job_detail(request, id):
-    if id == 0:
-        return redirect("/")
-    return_html = f"<h1>{job_title[id]}</h1> <h3>{job_description[id]}</h3>"
-    return HttpResponse(return_html)
+    try:
+        if id == 0:
+            return redirect(reverse("jobs_home"))
+        return_html = f"<h1>{job_title[id]}</h1> <h3>{job_description[id]}</h3>"
+        return HttpResponse(return_html)
+    except:
+        return HttpResponseNotFound("Not Found")
