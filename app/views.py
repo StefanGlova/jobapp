@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.template import loader
 
 job_title = [
     "First Job",
@@ -15,6 +16,12 @@ job_description = [
 ]
 
 # Create your views here.
+
+def hello(request):
+    template = loader.get_template("hello.html")
+    context = {}
+    return HttpResponse(template.render(context, request))
+
 
 def jobs_list(request):
     job_list = "<ul>"
