@@ -15,12 +15,22 @@ job_description = [
     "Third job description"
 ]
 
+class TempClass:
+    x = 5
+
 # Create your views here.
 
 def hello(request):
-    template = loader.get_template("hello.html")
-    context = {}
-    return HttpResponse(template.render(context, request))
+    # template = loader.get_template("app/hello.html")
+    list = ["alpha", "beta"]
+    temp = TempClass()
+    is_authenticated = False
+    age = 25
+    context = {"name": "Django", "first_list": list,
+               "temp_object": temp, "age": age,
+               "is_authenticated": is_authenticated}
+    # return HttpResponse(template.render(context, request))
+    return render(request, "app/hello.html", context)
 
 
 def jobs_list(request):

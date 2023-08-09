@@ -1,2 +1,4 @@
 env/
-**/__pycache__/
+app/__pycache__/
+jobapp/__pycache__/
+app/migrations/__pycache__/
