@@ -1,11 +1,21 @@
 from django import forms
 from subscribe.models import Subscribe
+from django.utils.translation import gettext_lazy as _
 
 class SubscribeForm(forms.ModelForm):
     class Meta:
         model=Subscribe
         fields="__all__" # can be added as list if not all are required ["first_name", "email"]
-    
+        labels={
+            "first_name":_("Enter First Name: "),
+            "last_name":_("Enter Last Name: "),
+            "email":_("Enter Email: ")
+        }
+        error_messages={
+            "first_name": {
+                "required": _("You cannot move forward without first name")
+            }
+        }
 
 
 
