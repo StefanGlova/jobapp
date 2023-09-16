@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Document</title>
+    <title>Subscribe</title>
 </head>
 <body>
     <form method="post">
-        {% csrf_token %}
+        {% comment %} {% csrf_token %}
 
         {% if email_error_empty %}
             <p>{{ email_error_empty }}</p>
@@ -22,6 +22,9 @@
         <label for="email">Email</label>
         <input type="email" id="email" name="email" placeholder="Your Email" required>
         <br>
+        <input type="submit" value="Submit"> {% endcomment %}
+        {% csrf_token %}
+        {{form.as_ul}}
         <input type="submit" value="Submit">
     </form>
 </body>
