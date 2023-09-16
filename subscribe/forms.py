@@ -16,9 +16,13 @@ class SubscribeForm(forms.Form):
     last_name = forms.CharField(
         max_length=100,
         disabled=False,
-        validators=[validate_comma]
+        validators=[validate_comma],
+        label="Enter Last Name"
     )
-    email = forms.EmailField(max_length=100)
+    email = forms.EmailField(
+        max_length=100,
+        label="Enter Email"
+    )
 
     # def clean_first_name(self):
     #     data = self.cleaned_data["first_name"]
